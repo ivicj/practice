@@ -1,1 +1,75 @@
-<p>users works!</p>
+<mat-card>
+    <mat-card-content>
+        <mat-card-title>
+            <span> Users list</span>
+        </mat-card-title>
+        <div class="mat-table-container">
+            <table mat-table [dataSource]="usersList">
+                <ng-container matColumnDef="Id">
+                    <th mat-header-cell *matHeaderCellDef>{{'Id'}}
+                    <th>
+                    <td mat-cell *matCellDef="let row">{{row.id}}</td>
+                </ng-container>
+                <ng-container matColumnDef="Name">
+                    <th mat-header-cell *matHeaderCellDef>{{'Name'}}</th>
+                    <td mat-cell *matCellDef="let row">{{row.name}}</td>
+                </ng-container>
+                <ng-container matColumnDef="Username">
+                    <th mat-header-cell *matHeaderCellDef>{{'Username'}}</th>
+                    <td mat-cell *matCellDef="let row">{{row.username}}</td>
+                </ng-container>
+                <ng-container matColumnDef="Email">
+                    <th mat-header-cell *matHeaderCellDef>{{'Email'}}</th>
+                    <td mat-cell *matCellDef="let row">{{row.email}}</td>
+                </ng-container>
+                <ng-container matColumnDef="Street name">
+                    <th mat-header-cell *matHeaderCellDef>{{'Street name'}}</th>
+                    <td mat-cell *matCellDef="let row">{{row.address.street}}</td>
+                </ng-container>
+                <ng-container matColumnDef="Suite">
+                    <th mat-header-cell *matHeaderCellDef>{{'Suite'}}</th>
+                    <td mat-cell *matCellDef="let row">{{row.address.suite}}</td>
+                </ng-container>
+                <ng-container matColumnDef="City">
+                    <th mat-header-cell *matHeaderCellDef>{{'City'}}</th>
+                    <td mat-cell *matCellDef="let row">{{row.address.city}}</td>
+                </ng-container>
+                <ng-container matColumnDef="Zipcode">
+                    <th mat-header-cell *matHeaderCellDef>{{'Zipcode'}}</th>
+                    <td mat-cell *matCellDef="let row">{{row.address.zipcode}}</td>
+                </ng-container>
+                <ng-container matColumnDef="Lat">
+                    <th mat-header-cell *matHeaderCellDef>{{'Lat'}}</th>
+                    <td mat-cell *matCellDef="let row">{{row.address.geo.lat}}</td>
+                </ng-container>
+                <ng-container matColumnDef="Lng">
+                    <th mat-header-cell *matHeaderCellDef>{{'Lng'}}</th>
+                    <td mat-cell *matCellDef="let row">{{row.address.geo.lng}}</td>
+                </ng-container>
+                <ng-container matColumnDef="Phone">
+                    <th mat-header-cell *matHeaderCellDef>{{'Phone'}}</th>
+                    <td mat-cell *matCellDef="let row">{{row.phone}}</td>
+                </ng-container>
+                <ng-container matColumnDef="Website">
+                    <th mat-header-cell *matHeaderCellDef>{{'Website'}}</th>
+                    <td mat-cell *matCellDef="let row">{{row.website}}</td>
+                </ng-container>
+                <ng-container matColumnDef="Company name">
+                    <th mat-header-cell *matHeaderCellDef>{{'Company name'}}</th>
+                    <td mat-cell *matCellDef="let row">{{row.company.name}}</td>
+                </ng-container>
+                <ng-container matColumnDef="Company catch phrase">
+                    <th mat-header-cell *matHeaderCellDef>{{'Company catch phrase'}}</th>
+                    <td mat-cell *matCellDef="let row">{{row.company.catchPhrase}}</td>
+                </ng-container>
+                <ng-container matColumnDef="Company bs">
+                    <th mat-header-cell *matHeaderCellDef>{{'Company bs'}}</th>
+                    <td mat-cell *matCellDef="let row">{{row.company.bs}}</td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </div>
+    </mat-card-content>
+</mat-card>
