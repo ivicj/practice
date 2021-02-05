@@ -7,14 +7,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
-import { MatButtonModule  } from '@angular/material/button';
-import { MatInputModule  } from '@angular/material/input';
-import { MatCardModule  } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
 import { HttpClientModule } from '@angular/common/http';
 import { NavMenuComponent } from './modules/nav-menu/nav-menu.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatTableModule } from '@angular/material/table';
 import { UsersComponent } from './modules/users/users.component';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { RootStoreModule } from './root-store/root-store.module';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { UsersComponent } from './modules/users/users.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    RootStoreModule,
+    StoreDevtoolsModule.instrument({ name: 'NgRx practice app' }),
     HttpClientModule,
     MatToolbarModule,
     MatSidenavModule,
