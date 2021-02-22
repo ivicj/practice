@@ -1,19 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { AlbumsActions, AlbumsSelectors } from 'src/app/root-store/albums-store';
+import { State } from 'src/app/root-store/albums-store/albums.state';
 import { Album } from '../model/album';
-
-const ALBUMS_DATA: Album[] = [
-  {
-    userId: 1,
-    id: 1,
-    title: 'asd'
-  },
-  {
-    userId: 1,
-    id: 2,
-    title: 'asd'
-  }
-];
 
 @Component({
   selector: 'app-albums',
@@ -24,21 +15,15 @@ export class AlbumsComponent implements OnInit {
 
   displayedColumns: string[] = ['Title'];
   albumsList = [];
+  albums$: Observable<Album[]>;
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private store: Store<State>
+    ) { }
 
   ngOnInit(): void {
-    this.getAlbums();
-  }
-
-  getAlbums() {
-    this.http.get('https://jsonplaceholder.typicode.com/albums').subscribe(x => {
-      if (x === null || x === '' || typeof x === 'undefined') {
-        return;
-      }
-      this.albumsList = x as Album[];
-
-    }, error => console.error(error));
+    this.store.dispatch(AlbumsActions.LoadAlbumsDataRequestAction());
+    this.albums$ = this.store.pipe(AlbumsSelectors.selectAlbumsData);
   }
 
 }

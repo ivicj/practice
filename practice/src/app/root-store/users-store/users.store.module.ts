@@ -13,6 +13,6 @@ import { usersReducer } from "./users.reducer";
     ],
     providers: [UsersEffects]
 })
-export class UsersModule {
+export class UsersStoreModule {
 
 }

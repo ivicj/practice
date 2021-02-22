@@ -4,23 +4,42 @@
             <span> Posts list</span>
         </mat-card-title>
         <div class="mat-table-container">
-            <table mat-table [dataSource]="postsList">
-                <ng-container matColumnDef="Id">
-                    <th mat-header-cell *matHeaderCellDef>{{'Id'}}<th>
-                    <td mat-cell *matCellDef="let row">{{row.id}}</td>
-                </ng-container>
-                <ng-container matColumnDef="Title">
-                    <th mat-header-cell *matHeaderCellDef>{{'Title'}}</th>
-                    <td mat-cell *matCellDef="let row">{{row.title}}</td>
-                </ng-container>
-                <ng-container matColumnDef="Body">
-                    <th mat-header-cell *matHeaderCellDef>{{'Body'}}</th>
-                    <td mat-cell *matCellDef="let row">{{row.body}}</td>
-                </ng-container>
-
-                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-            </table>
+            <button mat-icon-button (click)="toggleTableRows()">View All Comments</button>
+            <div *ngIf="dataSource.data.length !== 0">
+                <table mat-table [dataSource]="dataSource" multiTemplateDataRows>
+                    <ng-container matColumnDef="Id">
+                        <th mat-header-cell *matHeaderCellDef>{{'Id'}}</th>
+                        <td mat-cell *matCellDef="let row">{{row.id}}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="Title">
+                        <th mat-header-cell *matHeaderCellDef>{{'Title'}}</th>
+                        <td mat-cell *matCellDef="let row">{{row.title}}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="Body">
+                        <th mat-header-cell *matHeaderCellDef>{{'Body'}}</th>
+                        <td mat-cell *matCellDef="let row">{{row.body}}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="Actions">
+                        <th mat-header-cell *matHeaderCellDef>{{'Actions'}}</th>
+                        <td mat-cell *matCellDef="let row">
+                            <button mat-icon-button (click)="row.isExpanded = !row.isExpanded">View Comments</button>
+                        </td>
+                    </ng-container>
+                    <!-- Template for details row -->
+                    <ng-container matColumnDef="expandedDetail">
+                        <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+                            <div class="row s-element-detail" [@detailExpand]="element.isExpanded ? 'expanded' : 'collapsed'">
+                                <app-comments [post]="element"></app-comments>
+                            </div>
+                        </td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky: true"></tr>
+                    <tr mat-row *matRowDef="let element; columns: displayedColumns;" class="s-element-row"
+                        [class.s-expanded-row]="element.isExpanded"></tr>
+                    <!-- Extra row to show detail content column -->
+                    <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="s-detail-row"></tr>
+                </table>
+            </div>
         </div>
     </mat-card-content>
 </mat-card>

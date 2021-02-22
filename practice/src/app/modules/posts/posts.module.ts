@@ -10,6 +10,11 @@ import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AlbumsComponent } from '../albums/albums.component';
+import { AlbumsModule } from '../albums/albums.module';
+import { CommentsComponent } from '../comments/comments.component';
 
 @NgModule({
   imports: [
@@ -22,9 +27,15 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatIconModule,
     MatCardModule,
     MatInputModule,
-    MatTableModule
+    MatTableModule,
+    MatExpansionModule,
+    AlbumsModule
   ],
-  declarations: [PostsComponent],
-  exports: [PostsComponent]
+  declarations: [
+    PostsComponent,
+    CommentsComponent
+  ],
+  exports: [PostsComponent,
+    CommentsComponent]
 })
 export class PostsModule { }

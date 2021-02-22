@@ -17,6 +17,11 @@ import { MatTableModule } from '@angular/material/table';
 import { UsersComponent } from './modules/users/users.component';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { RootStoreModule } from './root-store/root-store.module';
+import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
+import { PostsComponent } from './modules/posts/posts.component';
+import { environment } from 'src/environments/environment';
+import { AlbumsModule } from './modules/albums/albums.module';
+import { CommentsComponent } from './modules/comments/comments.component';
 
 @NgModule({
   declarations: [
@@ -26,10 +31,11 @@ import { RootStoreModule } from './root-store/root-store.module';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     BrowserAnimationsModule,
+    AppRoutingModule,
     RootStoreModule,
-    StoreDevtoolsModule.instrument({ name: 'NgRx practice app' }),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
     HttpClientModule,
     MatToolbarModule,
     MatSidenavModule,
@@ -39,9 +45,15 @@ import { RootStoreModule } from './root-store/root-store.module';
     MatCardModule,
     MatInputModule,
     MatTableModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatDialogModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    { provide: MAT_DIALOG_DATA, useValue: {} }
+  ],
+  entryComponents: [
+    PostsComponent
+  ],
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
