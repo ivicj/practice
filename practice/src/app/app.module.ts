@@ -22,6 +22,7 @@ import { PostsComponent } from './modules/posts/posts.component';
 import { environment } from 'src/environments/environment';
 import { AlbumsModule } from './modules/albums/albums.module';
 import { CommentsComponent } from './modules/comments/comments.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { CommentsComponent } from './modules/comments/comments.component';
     MatInputModule,
     MatTableModule,
     FlexLayoutModule,
-    MatDialogModule
+    MatDialogModule,
+    MatPaginatorModule
   ],
   providers: [
     { provide: MAT_DIALOG_DATA, useValue: {} }
