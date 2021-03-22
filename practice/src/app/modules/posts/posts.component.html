@@ -22,7 +22,7 @@
                     <ng-container matColumnDef="Actions">
                         <th mat-header-cell *matHeaderCellDef>{{'Actions'}}</th>
                         <td mat-cell *matCellDef="let row">
-                            <button mat-icon-button (click)="row.isExpanded = !row.isExpanded">View Comments</button>
+                            <mat-icon (click)="row.isExpanded = !row.isExpanded">remove_red_eye</mat-icon>
                         </td>
                     </ng-container>
                     <!-- Template for details row -->
